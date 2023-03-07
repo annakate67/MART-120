@@ -1,0 +1,17 @@
+span.greyColor{
+    color:black;
+    background-color:gray;
+}
+
+ul.purpleColor{
+    color:indigo;
+    background-color: pink;
+}
+
+#greenColor{
+    color:forestgreen;
+    background-color: azure;
+}
+#redColor{
+    color:rgba(255, 0, 0, 0.264)
+}
