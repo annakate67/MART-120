@@ -1,0 +1,191 @@
+<html>
+    <head>
+        <Title>
+            Self-portrait!
+        </Title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+
+        <script>
+
+var xLeftEye = 160;
+var xRightEye = 220;
+var yEyeBrow = 160;
+var xMole = 250;
+var yMole = 350;
+var titleSize = 10;
+var titleGrowth = 5;
+
+//eyebrows//
+//up=(115,150)(190,150)//
+//down=(115,160)(190,160)//
+
+var movement;
+
+function setup() {
+  createCanvas(400, 400);
+  console.log("hi");
+
+  movement = Math.floor(Math.random() * 10) + 1;
+}
+
+function draw() {
+  background(204, 255, 255);
+  noStroke();
+
+  fill(255, 229, 204);
+  circle(75, 220, 70);
+  circle(325, 220, 70);
+
+  //ears//
+
+  fill(249.2, 229, 204);
+  circle(200, 250, 250);
+  rect(75, 120, 250, 125);
+
+  //face//
+
+  fill(255, 250, 255);
+  noStroke();
+  ellipse(165, 220, 80, 90);
+  ellipse(225, 220, 80, 90);
+
+  //eyes//
+
+  fill(204, 229, 255);
+  circle(xLeftEye, 220, 30);
+  if (xLeftEye >= 150 || xLeftEye <= 165) {
+    movement *= -1;
+  }
+  xLeftEye += movement;
+
+  circle(xRightEye, 220, 30);
+  if (xRightEye >= 210 || xRightEye <= 230) {
+    movement *= -1;
+  }
+  xRightEye += movement;
+
+  //irises//
+  //left=(160,220)(220,220)//
+  //right=(165,220)(225,220)//
+
+  fill(0, 25, 51);
+  circle(xLeftEye, 220, 15);
+  if (xLeftEye >= 150 || xLeftEye <= 165) {
+    movement *= -1;
+  }
+  xLeftEye += movement;
+
+  circle(xRightEye, 220, 15);
+  if (xRightEye >= 150 || xRightEye <= 165) {
+    movement *= -1;
+  }
+  xRightEye += movement;
+
+  //left=(160,220)(220,220)//
+  //right=(165,220)(225,220)//
+  // left eye //
+
+  //pupils//
+
+  fill(249.2, 229, 204);
+  ellipse(165, 280, 70, 30);
+  ellipse(225, 280, 70, 30);
+
+  //eyelids//
+  //up=(165,250)(225,250)//
+  //down=(165,280)(225,280)//
+
+  fill(153, 122, 91);
+  rect(115, yEyeBrow, 60, 30, 20, 5);
+  rect(190, yEyeBrow, 60, 30, 20, 5);
+
+  if (yEyeBrow >= 150 || yEyeBrow <= 170) {
+    movement *= -1;
+  }
+  yEyeBrow += movement;
+
+  //eyebrows//
+  //up=(115,150)(190,150)//
+  //down=(115,160)(190,160)//
+
+  fill(153, 118, 90);
+  arc(100, 120, 60, 80, 0.8, 0);
+  arc(150, 120, 70, 80, 0.8, 0);
+  arc(210, 125, 90, 100, 0.8, -0.2);
+
+  arc(300, 120, 60, 80, PI, 2.35);
+  arc(250, 120, 70, 80, PI, 2.35);
+
+  circle(120, 95, 70);
+  circle(170, 95, 70);
+  circle(220, 95, 70);
+  circle(275, 95, 70);
+
+  circle(140, 80, 60);
+  circle(165, 75, 70);
+  circle(190, 75, 60);
+
+  circle(210, 75, 70);
+  circle(235, 75, 60);
+  circle(260, 80, 60);
+
+  //hair//
+
+  fill(255, 229, 204);
+  noStroke();
+  arc(200, 250, 50, 40, 1.56, 4.7);
+
+  //nose//
+
+  stroke(51, 0, 25);
+  strokeWeight(3);
+  line(200, 300, 225, 300);
+  line(225, 300, 240, 290);
+
+  //mouth//
+
+  stroke(152, 122, 91);
+  strokeWeight(5);
+  point(xMole, yMole);
+
+  if (xMole >= 250 || xMole <= 255) {
+    movement *= -1;
+  }
+
+  xMole += movement;
+
+  if (yMole >= 350 || yMole <= 345) {
+    movement *= -1;
+  }
+
+  yMole += movement;
+
+  //mole//
+
+  stroke(210, 0, 255);
+  strokeWeight(10);
+  point(69, 240);
+  point(330, 240);
+
+  stroke(0, 0, 0);
+  strokeWeight(8);
+  point(54, 235);
+  point(345, 235);
+
+  //earrings//
+
+  text("Anna Powell", 310, 390);
+
+  textSize(titleSize);
+  text("It's me!", 20, 30);
+
+  if (titleSize >= 10 || titleSize <= 50) {
+    titleGrowth *= -1;
+  }
+
+  titleSize += titleGrowth;
+}
+</script>
+        </head>
+          
+</html>
