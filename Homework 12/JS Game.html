@@ -1,0 +1,142 @@
+<html>
+
+<head>
+    <title>
+        JS Game
+    </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+
+    <script>
+
+var x = 30;
+var y = 30;
+
+var xBPlace = 150;
+var xGPlace = 300;
+var yPlace = 40;
+
+var xBMovement;
+var xGMovement;
+var yMovement;
+
+var mousex = 0;
+var mousey = 0;
+
+function setup() {
+  createCanvas(400, 400);
+
+  xBMovement = Math.floor(Math.random() * Math.floor(Math.random() * 10) + 1);
+
+  xGMovement = Math.floor(Math.random() * Math.floor(Math.random() * 15) + 1);
+
+  yMovement = Math.floor(Math.random() * Math.floor(Math.random() * 5) + 1);
+}
+ 
+
+function draw() {
+  background(220);
+
+  //visual exit//
+
+  fill(153, 76, 0);
+  rect(360, 340, 30, 50);
+  fill(255, 255, 0);
+  circle(365, 365, 5);
+  fill(0);
+  rect(390,340,30,50);
+
+  //visual exit//
+
+  //player circle, keyboard movements, exit message//
+
+  if (keyIsDown(68)) {
+    x += 5;
+  } else if (keyIsDown(65)) {
+    x -= 5;
+  } else if (keyIsDown(83)) {
+    y += 5;
+  } else if (keyIsDown(87)) {
+    y -= 5;
+  }
+
+  if (x >= 393 && y >= 340 && y <= 390) {
+    fill(255, 0, 0);
+    textSize(20);
+    text("You did it!", 300, 330);
+  } else {
+    fill(210);
+    textSize(20);
+    text("You did it!", 300, 330);
+  }
+
+  fill(255, 255, 255);
+  circle(x, y, 30);
+
+  //player circle, keyboard movements, exit message//
+
+  //two obstacles and random movements//
+
+  fill(0, 0, 0);
+  circle(xBPlace, yPlace, 60);
+
+  xBMovement = Math.floor(Math.random() * Math.floor(Math.random() * 10) + 1);
+  yMovement = Math.floor(Math.random() * Math.floor(Math.random() * 5) + 1);
+
+  xBPlace -= xBMovement;
+  yPlace += yMovement *= 2;
+
+  if (xBPlace > width) {
+    xBPlace = 0;
+  }
+  if (xBPlace < 0) {
+    xBPlace = width;
+  }
+  if (yPlace > height) {
+    yPlace = 0;
+  }
+  if (yPlace < 0) {
+    yPlace = height;
+  }
+
+  fill(125, 125, 125);
+  circle(xGPlace, yPlace, 65);
+
+  xGMovement = Math.floor(Math.random() * Math.floor(Math.random() * 15) + 1);
+  yMovement = Math.floor(Math.random() * Math.floor(Math.random() * 5) + 1);
+
+  xGPlace += xGMovement;
+  yPlace += yMovement;
+
+  if (xGPlace > width) {
+    xGPlace = 0;
+  }
+  if (xGPlace < 0) {
+    xGPlace = width;
+  }
+  if (yPlace > height) {
+    yPlace = 0;
+  }
+  if (yPlace < 0) {
+    yPlace = height;
+  }
+
+  //two obstacles and random movements//
+
+  //non-moveable click obstacle//
+
+  fill(255, 255, 0);
+  circle(mousex, mousey, 20);
+
+  //non-moveable click obstacle//
+}
+
+function mousePressed() {
+  mousex = mouseX;
+  mousey = mouseY;
+}
+
+    </script>
+
+</head>
+
+</html>
