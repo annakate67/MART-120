@@ -8,9 +8,6 @@
 
     <script>
 
-var mousex = 0;
-var mousey = 0;
-
 function setup() {
   createCanvas(400, 400);
 
@@ -24,6 +21,8 @@ function setup() {
 
   createCircleB(150, 50);
   createCircleG(300, 50);
+
+  createMouse();
 }
 
 function draw() {
@@ -54,8 +53,7 @@ function draw() {
   drawCircleG();
   circleGMovement();
 
-  mouse();
-  circle(mousex, mousey, 20);
+  drawMouse(100,0,100);
 }
 
 //borders function//
@@ -215,11 +213,19 @@ function drawCircleG() {
   circle(xGPlace, yGPlace, 60);
 }
 
-function mouse() {}
-
 function mousePressed() {
   mousex = mouseX;
   mousey = mouseY;
+}
+
+function createMouse(xM, yM) {
+  mousex = xM;
+  mousey = yM;
+}
+
+function drawMouse(colorRed,colorGreen,ColorBlue) {
+  fill(colorRed,colorGreen,ColorBlue);
+  circle(mousex, mousey, 10);
 }
 
     </script>
