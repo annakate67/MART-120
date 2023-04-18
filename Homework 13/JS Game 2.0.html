@@ -1,0 +1,229 @@
+<html>
+
+<head>
+    <title>
+        JS Game
+    </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+
+    <script>
+
+var mousex = 0;
+var mousey = 0;
+
+function setup() {
+  createCanvas(400, 400);
+
+  xBMovement = floor(random() * 5) + 1;
+  xGMovement = floor(random() * 5) + 1;
+
+  yBMovement = floor(random() * 5) + 1;
+  yGMovement = floor(random() * 5) + 1;
+
+  createPlayer(30, 30);
+
+  createCircleB(150, 50);
+  createCircleG(300, 50);
+}
+
+function draw() {
+  background(220);
+
+  //calls borders//
+  borders(10);
+
+  //calls visual exit//
+  exit(360, 340, 390, 30, 50, 365, 365, 5, 153, 76, 0, 0, 0, 0, 255, 255, 0);
+
+  //calls congrats//
+
+  congrats(0, 255, 0);
+
+  //calls player//
+
+  drawPlayer();
+  playerMovement();
+
+  //calls mouse shape//
+
+  //calls obstactles//
+
+  drawCircleB();
+  circleBMovement();
+
+  drawCircleG();
+  circleGMovement();
+
+  mouse();
+  circle(mousex, mousey, 20);
+}
+
+//borders function//
+
+function borders(thickness) {
+  fill(150);
+  rect(0, 0, thickness, 400);
+  rect(390, 0, thickness, 400);
+  rect(0, 0, 400, thickness);
+  rect(0, 390, 400, thickness);
+}
+
+// exit function//
+
+function exit(
+  door_X,
+  door_Y,
+  exit_X,
+  width,
+  height,
+  knob_X,
+  knob_Y,
+  knob_Diameter,
+  door_Red,
+  door_Green,
+  door_Blue,
+  exit_Red,
+  exit_Green,
+  exit_Blue,
+  knob_R,
+  knob_G,
+  knob_B
+) {
+  fill(door_Red, door_Green, door_Blue);
+  rect(door_X, door_Y, width, height);
+  fill(exit_Red, exit_Green, exit_Blue);
+  rect(exit_X, door_Y, width, height);
+
+  fill(knob_R, knob_G, knob_B);
+  circle(knob_X, knob_Y, knob_Diameter);
+}
+
+function congrats(colorR, colorG, colorB) {
+  if (playerX >= 393 && playerY >= 340 && playerY <= 390) {
+    fill(colorR, colorG, colorB);
+    textSize(20);
+    text("You did it!", 300, 330);
+  } else {
+    fill(210);
+    textSize(20);
+    text("You did it!", 300, 330);
+  }
+}
+
+function playerMovement() {
+  if (keyIsDown(65)) {
+    playerX -= 5;
+  }
+  if (keyIsDown(68)) {
+    playerX += 5;
+  }
+  if (keyIsDown(83)) {
+    playerY += 5;
+  }
+  if (keyIsDown(87)) {
+    playerY -= 5;
+  }
+}
+function createPlayer(xP, yP) {
+  playerX = xP;
+  playerY = yP;
+}
+
+function drawPlayer() {
+  fill(255);
+  circle(playerX, playerY, 30);
+}
+
+function mousePressed() {
+  mouseX = mouseX;
+  mouseY = mouseY;
+}
+
+function createMouse() {
+  fill(225, 225, 0);
+  circle(mouseX, mouseY, 20);
+}
+
+//circle B//
+function circleBMovement() {
+  if (xBPlace <= 40) {
+    xBPlace = 360;
+  }
+
+  if (xBPlace >= 360) {
+    xBPlace = 40;
+  }
+
+  xBPlace += xBMovement;
+
+  if (yBPlace <= 40) {
+    yBPlace = 360;
+  }
+
+  if (yBPlace >= 360) {
+    yBPlace = 40;
+  }
+
+  yBPlace += yBMovement;
+}
+
+function createCircleB(xB, yB) {
+  xBPlace = xB;
+  yBPlace = yB;
+
+  //circle(xBPlace, yPlace, 60);//
+}
+
+function drawCircleB() {
+  fill(0);
+  circle(xBPlace, yBPlace, 60);
+}
+
+//circleG//
+
+function circleGMovement() {
+  if (xGPlace <= 40) {
+    xGPlace = 360;
+  }
+
+  if (xGPlace >= 360) {
+    xGPlace = 40;
+  }
+
+  xGPlace += xGMovement;
+
+  if (yGPlace <= 40) {
+    yGPlace = 360;
+  }
+
+  if (yGPlace >= 360) {
+    yGPlace = 40;
+  }
+
+  yGPlace += yGMovement;
+}
+
+function createCircleG(xG, yG) {
+  xGPlace = xG;
+  yGPlace = yG;
+
+  //circle(xBPlace, yPlace, 60);//
+}
+
+function drawCircleG() {
+  fill(120);
+  circle(xGPlace, yGPlace, 60);
+}
+
+function mouse() {}
+
+function mousePressed() {
+  mousex = mouseX;
+  mousey = mouseY;
+}
+
+    </script>
+
+</head>
+
+</html>
