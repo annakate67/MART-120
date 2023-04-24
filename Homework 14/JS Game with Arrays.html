@@ -1,0 +1,208 @@
+<html>
+
+<head>
+    <title>
+        JS Game
+    </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+
+    <script>
+
+//obstacle X and Y//
+var myXs = [];
+var myYs = [];
+var myDiameters = [];
+
+//obstacle colors//
+var myRedColors = [];
+var myGreenColors = [];
+var myBlueColors = [];
+
+//obstacle speeds//
+var obstacleXSpeed = [];
+var obstacleYSpeed = [];
+
+function setup() {
+  createCanvas(400, 400);
+  //loop to call obstacles//
+  for (var i = 0; i < 5; i++) {
+    //get random numbers to call obstacles, colors, speeds//
+    myXs[i] = getRandomNumber(400);
+    myYs[i] = getRandomNumber(400);
+    myDiameters[i] = getRandomNumber(75);
+
+    myRedColors[i] = getRandomNumber(255);
+    myGreenColors[i] = getRandomNumber(255);
+    myBlueColors[i] = getRandomNumber(255);
+
+    obstacleXSpeed[i] = Math.floor(Math.random() * Math.floor() * 5) + 1;
+    obstacleYSpeed[i] = Math.floor(Math.random() * Math.floor() * 5) + 1;
+  }
+
+  createPlayer(30, 30);
+
+  //calls createMouse function//
+  createMouse();
+}
+
+function draw() {
+  background(220);
+
+  //calls borders//
+  borders(15);
+
+  //calls exit//
+  exit(360, 340, 390, 30, 50, 365, 365, 5, 153, 76, 0, 0, 0, 0, 255, 255, 0);
+
+  //calls congrats//
+  congrats(0, 255, 0);
+
+  //calls player, player movement//
+  drawPlayer();
+  playerMovement();
+
+  //for function creates obstacle, colors, speeds//
+ 
+    obstacleMovement(40,360);
+    
+  
+
+  //calls mouse//
+  drawMouse(100, 0, 100);
+}
+
+function obstacleMovement(topLeft,lowerRight){
+  
+   for (var i = 0; i < myXs.length; i++) {
+  fill(myRedColors[i], myBlueColors[i], myGreenColors[i]);
+    circle(myXs[i], myYs[i], myDiameters[i]);
+    obstacleXSpeed[i] = Math.floor(
+      Math.random() * Math.floor(Math.random() * 5) + 1
+    );
+    obstacleYSpeed[i] = Math.floor(
+      Math.random() * Math.floor(Math.random() * 5) + 1
+    );
+
+    myXs[i] += obstacleXSpeed[i];
+    myYs[i] += obstacleYSpeed[i];
+ 
+  if (myXs[i] > lowerRight) {
+      myXs[i] = topLeft;
+    }
+    if (myXs[i] < topLeft) {
+      myXs[i] = lowerRight;
+    }
+    if (myYs[i] > lowerRight) {
+      myYs[i] = topLeft;
+    }
+    if (myYs[i] < topLeft) {
+      myYs[i] = lowerRight;
+    }
+}
+}
+//borders function//
+
+function borders(thickness) {
+  fill(150);
+  rect(0, 0, thickness, 400);
+  rect(385, 0, thickness, 400);
+  rect(0, 0, 400, thickness);
+  rect(0, 385, 400, thickness);
+}
+
+//exit function//
+
+function exit(
+  door_X,
+  door_Y,
+  exit_X,
+  width,
+  height,
+  knob_X,
+  knob_Y,
+  knob_Diameter,
+  door_Red,
+  door_Green,
+  door_Blue,
+  exit_Red,
+  exit_Green,
+  exit_Blue,
+  knob_R,
+  knob_G,
+  knob_B
+) {
+  fill(door_Red, door_Green, door_Blue);
+  rect(door_X, door_Y, width, height);
+  fill(exit_Red, exit_Green, exit_Blue);
+  rect(exit_X, door_Y, width, height);
+
+  fill(knob_R, knob_G, knob_B);
+  circle(knob_X, knob_Y, knob_Diameter);
+}
+
+//congrats function//
+function congrats(colorR, colorG, colorB) {
+  if (playerX >= 393 && playerY >= 340 && playerY <= 390) {
+    fill(colorR, colorG, colorB);
+    textSize(20);
+    text("You did it!", 290, 330);
+  } else {
+    fill(210);
+    textSize(20);
+    text("You did it!", 290, 330);
+  }
+}
+
+//player movement function//
+function playerMovement() {
+  if (keyIsDown(65)) {
+    playerX -= 5;
+  }
+  if (keyIsDown(68)) {
+    playerX += 5;
+  }
+  if (keyIsDown(83)) {
+    playerY += 5;
+  }
+  if (keyIsDown(87)) {
+    playerY -= 5;
+  }
+}
+
+//create player function//
+function createPlayer(xP, yP) {
+  playerX = xP;
+  playerY = yP;
+}
+
+//draw player function//
+function drawPlayer() {
+  fill(255);
+  circle(playerX, playerY, 30);
+}
+
+//mouse pressed function//
+function mousePressed() {
+  mousex = mouseX;
+  mousey = mouseY;
+}
+
+function createMouse(xM, yM) {
+  mousex = xM;
+  mousey = yM;
+}
+
+function drawMouse(colorRed, colorGreen, ColorBlue) {
+  fill(colorRed, colorGreen, ColorBlue);
+  circle(mousex, mousey, 10);
+}
+
+function getRandomNumber(number) {
+  return Math.floor(Math.random() * number) + 15;
+}
+
+    </script>
+
+</head>
+
+</html>
